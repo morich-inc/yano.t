@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>矢野友浩 様｜morich キャリアご提案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #E60012;
+    --red-light: #fff0f0;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-900: #111827;
+    --blue-50: #eff6ff;
+    --blue-100: #dbeafe;
+    --blue-600: #2563eb;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans JP', sans-serif; background: #f5f5f5; color: var(--gray-900); line-height: 1.75; }
+  header { background: #fff; border-bottom: 3px solid var(--red); padding: 14px 24px; display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+  header img { height: 38px; }
+  header .htxt p:first-child { font-size: 12px; color: var(--gray-500); }
+  header .htxt p:last-child { font-size: 17px; font-weight: 900; }
+  .nav-bar { background: var(--gray-900); padding: 0 12px; overflow-x: auto; white-space: nowrap; }
+  .nav-bar a { display: inline-block; padding: 13px 18px; color: #ccc; text-decoration: none; font-size: 12px; font-weight: 700; border-bottom: 3px solid transparent; transition: all 0.2s; }
+  .nav-bar a:hover { color: #fff; border-bottom-color: var(--red); }
+  main { max-width: 860px; margin: 0 auto; padding: 28px 14px 64px; }
+  .card { background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); margin-bottom: 40px; overflow: hidden; border-top: 5px solid var(--red); }
+  .card-inner { padding: 28px 28px 36px; }
+  .badges { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+  .badge { font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 999px; border: 2px solid var(--red); color: var(--red); background: var(--red-light); }
+  .badge-blue { border-color: var(--blue-600); color: var(--blue-600); background: var(--blue-50); }
+  .co-name { font-size: clamp(22px, 5vw, 34px); font-weight: 900; line-height: 1.2; margin-bottom: 5px; }
+  .co-url { font-size: 12px; margin-bottom: 22px; }
+  .co-url a { color: var(--blue-600); text-decoration: none; }
+  .co-url a:hover { text-decoration: underline; }
+  .overview { background: var(--blue-50); border: 1px solid var(--blue-100); border-radius: 8px; padding: 16px 20px; margin-bottom: 22px; }
+  .overview h3 { font-size: 10px; font-weight: 700; color: var(--blue-600); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 10px; }
+  .overview table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .overview tr { border-bottom: 1px solid var(--blue-100); }
+  .overview tr:last-child { border-bottom: none; }
+  .overview th { text-align: left; padding: 6px 14px 6px 0; color: var(--gray-600); font-weight: 700; width: 100px; vertical-align: top; white-space: nowrap; }
+  .overview td { padding: 6px 0; color: var(--gray-700); }
+  .highlight { background: var(--red-light); border: 2px solid var(--red); border-radius: 8px; padding: 16px 20px; margin-bottom: 22px; }
+  .highlight h3 { font-size: 13px; font-weight: 900; color: var(--red); margin-bottom: 8px; }
+  .highlight p, .highlight li { font-size: 13px; color: #7a0000; margin-bottom: 4px; }
+  .highlight ul { padding-left: 16px; }
+  .accordion { margin-bottom: 16px; }
+  .acc-header { display: flex; align-items: flex-start; justify-content: space-between; cursor: pointer; padding: 12px 16px; background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; user-select: none; transition: background 0.15s; }
+  .acc-header:hover { background: var(--gray-100); }
+  .acc-header .label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--red); border-left: 3px solid var(--red); padding-left: 8px; margin-bottom: 5px; display: block; }
+  .acc-preview { font-size: 12px; color: var(--gray-500); line-height: 1.6; }
+  .acc-header-left { flex: 1; }
+  .acc-icon { width: 28px; height: 28px; flex-shrink: 0; margin-left: 12px; margin-top: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--gray-200); font-size: 13px; transition: transform 0.25s, background 0.2s; }
+  .acc-header.open .acc-icon { transform: rotate(180deg); background: var(--red); color: #fff; }
+  .acc-header.open { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom-color: transparent; }
+  .acc-body { display: none; padding: 20px 18px; border: 1px solid var(--gray-200); border-top: none; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; font-size: 13px; color: var(--gray-700); line-height: 1.85; }
+  .acc-body.open { display: block; }
+  .acc-body p { margin-bottom: 10px; }
+  .acc-body ul { padding-left: 18px; margin-bottom: 10px; }
+  .acc-body li { margin-bottom: 6px; }
+  .job-wrap { border: 1px solid var(--gray-200); border-radius: 8px; overflow: hidden; margin-bottom: 16px; }
+  .job-header { background: var(--gray-900); color: #fff; padding: 14px 18px; display: flex; align-items: flex-start; justify-content: space-between; cursor: pointer; user-select: none; }
+  .job-title-text { font-size: 14px; font-weight: 900; margin-bottom: 3px; }
+  .job-preview { font-size: 11px; color: #aaa; line-height: 1.5; }
+  .job-icon { width: 26px; height: 26px; flex-shrink: 0; margin-left: 12px; margin-top: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.15); font-size: 12px; transition: transform 0.25s; }
+  .job-header.open .job-icon { transform: rotate(180deg); }
+  .job-body { display: none; padding: 20px 18px; font-size: 13px; color: var(--gray-700); line-height: 1.85; }
+  .job-body.open { display: block; }
+  .job-body p { margin-bottom: 10px; }
+  .job-body ul { padding-left: 18px; margin-bottom: 10px; }
+  .job-body li { margin-bottom: 6px; }
+  .job-section { font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: .06em; margin: 14px 0 6px; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-right: 5px; margin-bottom: 8px; }
+  .tag-must { background: var(--red); color: #fff; }
+  .tag-want { background: var(--gray-600); color: #fff; }
+  .meta-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+  .pill { font-size: 12px; font-weight: 700; padding: 4px 11px; border-radius: 999px; background: var(--gray-100); color: var(--gray-700); border: 1px solid var(--gray-200); }
+  .section-label { font-size: 11px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; letter-spacing: .08em; border-left: 3px solid var(--red); padding-left: 8px; margin: 22px 0 10px; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .lbtn { display: inline-flex; align-items: center; gap: 5px; padding: 7px 14px; border-radius: 6px; background: var(--gray-900); color: #fff; font-size: 12px; font-weight: 700; text-decoration: none; transition: background 0.2s; }
+  .lbtn:hover { background: var(--red); }
+  .lbtn-out { background: transparent; color: var(--gray-900); border: 2px solid var(--gray-200); }
+  .lbtn-out:hover { background: var(--gray-900); color: #fff; border-color: var(--gray-900); }
+  footer { text-align: center; padding: 28px 16px; font-size: 11px; color: var(--gray-500); border-top: 1px solid var(--gray-200); background: #fff; }
+  @media(max-width:600px){ .card-inner{ padding: 18px 14px 24px; } .overview th { width: 80px; } }
+</style>
+</head>
+<body>
+<header>
+  <img src="morich_logo.jpg" alt="morich">
+  <div class="htxt">
+    <p>morich キャリアご提案資料</p>
+    <p>矢野友浩 様</p>
+  </div>
+</header>
+<nav class="nav-bar">
+  <a href="#k1">1. ウェルスナビ株式会社</a>
+  <a href="#k2">2. 株式会社シフトメーション</a>
+  <a href="#k3">3. イタンジ株式会社</a>
+  <a href="#k4">4. カイテク株式会社</a>
+  <a href="#k5">5. 株式会社できるくん（旧：株式会社ユーティル）</a>
+</nav>
+<main>
+
+<div class="card" id="k1"><div class="card-inner">
+  <div class="badges"><span class="badge">プロダクトグロースディレクター（チーム責任者候補）</span><span class="badge badge-blue">未上場</span></div>
+  <div class="co-name">ウェルスナビ株式会社</div>
+  <div class="co-url"><a href="https://corp.wealthnavi.com/" target="_blank">https://corp.wealthnavi.com/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>東京都品川区西五反田8-4-13 五反田JPビルディング 9F</td></tr><tr><th>上場区分</th><td>未上場</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>★役員リレーション</li><li>★過去複数名入社実績アリ</li><li>石原さとみさん出演のTVCMでもお馴染み</li><li>2025年3月より三菱UFJ銀行の完全子会社として更なる拡大を目指す</li><li>執行役員・須藤様はmorich経由でジョイン、現在は事業戦略グループ責任者とアライアンスグループ責任者を兼務</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">「働く世代に豊かさを」というミッションのもと、日本の働く世代の豊かな老後に向けた資産形成をサポートする会社です。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>「働く世代に豊かさを」というミッションのもと、日本の働く世代の豊かな老後に向けた資産形成をサポートする会社です。</p><p>ミッション実現に向けた第一歩として、ロボアドバイザーWealthNaviを開発・提供しています。</p><p>『WealthNavi』は2016年7月のサービス提供開始以降、2025年4月1日には運用者数42万人、預かり資産は1兆円4,000億円を突破。運用者数・預かり資産ともに国内ロボアドバイザーNo,1となっています。</p><p>2025年3月に三菱UFJ銀行の完全子会社となりました。</p><p>三菱UFJ銀行／MUFGグループとの一体的なプロダクト開発を進めており、同行が抱える1,000万人規模のデジタル顧客基盤に対して、ロボアドバイザーに限らず、生命保険、個人年金、住宅ローンなどを含む個人向け金融プラットフォームの構築を目指し、新たなサービスの開発にも取り組んでいます。</p><p><strong>代表プロフィール</strong></p><p>・CEO　柴山和久氏</p><p>1977年生まれ。2000年に東大法学部を卒業後、財務省に9年間勤務。ハーバード大学にて金融取引法を学んだ後、日英の財務省で予算、税制、国際交渉に参画。INSEADで金融工学を学んだ後、2010年にマッキンゼーに入社。ウォール街の機関投資家にて10兆円規模のリスク管理・資産運用プロジェクトに携わる。</p><p>2015年3月に退社し、TECH::CAMP第6期に入学。卒業直後、次世代の金融インフラを構築したいという想いから、2015年4月にWealthNavi（ウェルスナビ）株式会社を設立。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 プロダクトグロースディレクター（チーム責任者候補）</div>
+          <div class="job-preview">顧客理解・体験設計を主導し、既存・新規事業のグロース戦略を推進</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>期待する役割</strong></p><p>「顧客理解」や「顧客体験設計」を主導し、既存事業および新規事業のグロース戦略を推進していただきます。ご経験に応じて、組織マネジメントをお任せすることも想定しています。</p><p>CRM等の顧客コミュニケーション施策に留まらず、プロダクトの機能開発や、新規事業（MAP AIやデジタル資産形成等）に関わる体験設計を横断的に指揮していただくことを期待しています。</p><p><strong>業務内容</strong></p><ul><li>顧客課題や市場環境に基づく事業戦略策定</li><li>新規事業領域を包摂した顧客体験の設計</li><li>顧客価値に立脚した事業KPIの策定・管理</li><li>プロダクト深化・顧客コミュニケーション施策の立案・実行</li><li>プロジェクトマネジメント</li><li>事業計画の策定と予実管理</li><li>チームマネジメント</li></ul><p><strong>事業概要</strong></p><p>ウェルスナビは、全自動の資産運用サービスを提供しています。2026年5月時点で預かり資産は2兆円を突破、50万人以上のお客様にご利用いただく国内最大規模のロボアドバイザーです。リリースから7.5年で1兆円を達成し、直近2.5年でさらに1兆円を積み上げるなど、その成長スピードは加速しています。</p><p>この大きな成長を土台として、資産運用の枠を超え、生命保険や年金、PFM（個人資産管理）など、個人のお金に関する課題全般を解決する「総合金融プラットフォーム」への拡張に挑戦しています。その中核を担うのが「MAP AI」です。独自のAIとアルゴリズムにより、一人ひとりに最適な人生設計を提案し、誰もが安心してお金を管理できる新たな金融サービスです。</p><p>この構想を加速させるため、2026年度後半に三菱UFJ銀行と共同で新デジタルバンクを立ち上げ、中核機能としてMAP AIを実装します。さらに2027年度中には三菱UFJ eスマート証券と統合し、デジタル資産形成を担う全く新しい金融機関へと生まれ変わる予定です。</p><p>MUFGグループの6,000万人規模の顧客基盤を活かし、お客様を生涯に渡って支える新しい金融インフラをつくり上げていきます。</p><p><strong>応募資格</strong></p><p><span class='tag tag-must'>MUST</span></p><ul><li>事業ロードマップ策定および非連続的な成長を実現した経験</li><li>複数の顧客接点を横断したコミュニケーション施策の経験</li><li>顧客起点の事業運営にリーダーシップを発揮した経験</li><li>ピープルマネジメント経験</li></ul><p><span class='tag tag-want'>WANT</span></p><ul><li>事業責任者の経験</li><li>新規事業立ち上げの経験</li></ul>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span><span class="pill">✅ 副業可（条件あり）</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://corp.wealthnavi.com/" target="_blank">🏢 企業サイト</a><a class="lbtn lbtn-out" href="https://www.docswell.com/s/wealthnavi/ZP96X4-company_introduction#p1" target="_blank">📊 会社紹介資料</a><a class="lbtn lbtn-out" href="https://note.com/wealthnavi_hr" target="_blank">📝 採用公式note</a></div>
+</div></div>
+
+<div class="card" id="k2"><div class="card-inner">
+  <div class="badges"><span class="badge">カスタマーサクセス アカウントマネージャー</span><span class="badge badge-blue">未上場</span></div>
+  <div class="co-name">株式会社シフトメーション</div>
+  <div class="co-url"><a href="https://www.shiftmation.com/about/" target="_blank">https://www.shiftmation.com/about/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>東京都千代田区神田神保町2-2 神田神保町二丁目ビル701</td></tr><tr><th>上場区分</th><td>未上場</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>&quot;現場DX&quot;ではなく、&quot;社会インフラ&quot;を創るSaaS</li><li>&quot;仕組みを与えられる側&quot;ではなく、&quot;事業を創る側&quot;へ</li><li>&quot;PoC止まりのAI&quot;ではなく、&quot;現場実装されるAI&quot;に強み</li><li>導入社数350社超、2024年にDNX VenturesやArchetype Venturesなどから総額9億円の資金調達を実施</li><li>社員数27名の大人ベンチャー＆少数精鋭組織</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">「働く人が本来の力を発揮できる環境をつくりたい」という想いから生まれた株式会社シフトメーションは、日本のエッセンシャルワーカー約3,000万人の働き方改革に挑むスタートアップです。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>「働く人が本来の力を発揮できる環境をつくりたい」という想いから生まれた株式会社シフトメーションは、日本のエッセンシャルワーカー約3,000万人の働き方改革に挑むスタートアップです。</p><p>AIシフト自動作成サービス「Shiftmation」は、月20〜30時間かかる複雑なシフト作成をわずか5秒で自動化。医療・介護領域を中心に、東証プライム上場企業や国立大学法人をはじめ、350社以上、全国4,500以上の事業所へ導入されています。導入先には、JAL、東急イーライフデザイン、大阪大学医学部附属病院、朝日新聞社、HYATT REGENCY、SOTETSU HOTELS、LINE Xenesis、コメ兵、宇佐美など多様な業界の企業・法人が含まれます。</p><p>2024年にはDNX VenturesやArchetype Venturesなどから総額9億円の資金調達を実施し、成長を加速。単なる業務効率化ではなく、シフトデータを活用した人材配置最適化や組織改善まで支援する&quot;社会インフラ&quot;を目指しています。</p><p><strong>代表取締役　能塚 正基氏</strong></p><p>東京大学法学部卒業後、2008年にNTTドコモに入社。新宿池袋エリアの店舗統括を経て、本社マーケティング部にて顧客満足度向上に向けた全体戦略の立案。株式会社ビービットにてコンサルタントとして複数業界の改善に従事。</p><p>2014年に医療機関の経営管理を経て、店舗型ビジネス・医療・介護の複数領域で共通したアナログな業務改善を目指し、勤務シフト自動作成サービスShiftmationをローンチ。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 カスタマーサクセス アカウントマネージャー</div>
+          <div class="job-preview">エンタープライズ導入プロジェクトを推進し、活用定着・横展開・アップセルまで担当</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>シフトメーションの存在意義：現場のリアリズムから生まれた「問い」</strong></p><p>「なぜ、プロフェッショナルが、本来の価値を発揮すべき場所から引き離されているのか？」</p><p>医療、介護、宿泊、小売。私たちの社会を支える現場の最前線で、今も起きている現実があります。それは、高度な技術や志を持つリーダーたちが、数万通りの組み合わせが存在する「シフト作成」という難解なパズルに毎月数日間もバックヤードにこもり、本来の仕事から引き離されているというエラーです。</p><p>シフト作成は、労働基準法や「夜勤明けの休息」といった厳格な勤務ルール、施設運営に必要な資格要件、さらには「チームの相乗効果を高める編成」や「不公平感をなくし、スタッフが納得感を持って働けるための細やかな調整」まで、極めて多くの変数が絡み合う難解なパズルです。</p><p>私たちは、これをテクノロジーだけで「100点満点」に自動化することを目指しません。優先すべきは理想の追求よりも、現場で機能すること。あえて数秒で「80点」の土台を出し、最後の仕上げを人が行う。この「現場のリアリズム」を尊重した仕組みによって、私たちは管理者を事務作業から解放し、現場に「時間」と「心のゆとり」を戻します。</p><p>私たちが提供しているのは、単なるツールではありません。プロフェッショナルが本来の役割である『ケア』や『おもてなし』に、再び背中を向けることなく専念できるための、新しい土台です。</p><p><strong>募集背景</strong></p><p>&quot;導入成功&quot;を、&quot;全社変革&quot;へ進化させるフェーズへ</p><p>Shiftmationは現在、介護・医療・ホテルなどを中心に、350社以上への導入が進んでいます。そして今、従業員数1,000名を超える大手法人や、複数事業所を持つエンタープライズ企業への展開を、本格的に強化しているフェーズにあります。</p><p>特にシフト領域では、一部門・一事業所で成果が出ると、全社展開余地が非常に大きいという特徴があります。例えば、5事業所導入から、50事業所・100事業所へ拡大できる可能性もある。一方で、その拡大プロセスはまだ属人的な部分も多く、「どうすれば再現性高く横展開できるのか」は、現在まさに組織として向き合っているテーマです。</p><p><strong>仕事概要・ミッション</strong></p><p>&quot;導入&quot;ではなく、&quot;全社で使われ続ける状態&quot;をつくる。</p><p>Shiftmationの価値は、契約した瞬間には生まれません。現場で実際に運用され、管理者が安心して使え、複数事業所へ広がり、組織全体の運営が変わっていく。そこまで到達して、初めて価値になります。</p><p>CSアカウントマネージャーは、いわゆる導入支援担当ではありません。顧客本部と伴走しながら、</p><ul><li>導入計画</li><li>推進体制</li><li>活用定着</li><li>全社展開</li><li>アップセル</li></ul><p>までを一貫して設計・推進するポジションです。</p><p><strong>具体的な業務内容</strong></p><p><strong>① 導入プロジェクト全体設計・顧客本部との導入方針整理</strong></p><ul><li>推進体制設計</li><li>全体スケジュール策定</li><li>導入ロードマップ設計</li></ul><p><strong>② オンボーディングチームとの連携</strong></p><ul><li>各事業所導入の進捗管理</li><li>課題整理</li><li>リスク検知</li><li>エスカレーション対応</li></ul><p><strong>③ 本部・現場との合意形成</strong></p><ul><li>現場課題の整理</li><li>運用方針調整</li><li>導入優先順位整理</li><li>全社展開に向けた推進支援</li></ul><p><strong>④ 活用定着・横展開</strong></p><ul><li>利用率分析</li><li>定着支援</li><li>成功事例創出</li><li>他事業所展開支援</li></ul><p><strong>⑤ アップセル・拡張提案</strong></p><ul><li>利用ID拡大</li><li>対象部門拡大</li><li>追加機能提案</li><li>契約更新対応</li></ul><p><strong>⑥ Playbook化・型化</strong></p><ul><li>成功事例の言語化</li><li>導入パターン整理</li><li>運用テンプレ化</li><li>CSプロセス改善</li></ul><p><strong>このポジションの魅力</strong></p><ul><li>&quot;社会実装&quot;の最前線に立てる</li><li>エンタープライズ変革の難易度を経験できる</li><li>大規模導入における「再現性のある成長モデル」を自ら定義する</li></ul><p><strong>配属部署</strong></p><p>事業推進部</p><p>・カスタマーサクセスと営業が連携しながら顧客価値の最大化を目指す部門です。</p><p><strong>応募資格</strong></p><p><span class='tag tag-must'>MUST</span></p><p>以下いずれかのご経験を3年以上お持ちの方</p><p><strong>① エンタープライズ営業 / 深耕営業経験</strong></p><ul><li>大手法人向け営業経験</li><li>複数部門を巻き込む提案経験</li><li>既存深耕 / アップセル経験</li><li>中長期で顧客関係を構築してきた経験</li></ul><p><strong>② カスタマーサクセス / アカウントマネジメント経験</strong></p><ul><li>SaaSやITサービスにおけるCS経験</li><li>導入後の活用定着支援経験</li><li>契約更新 / 利用拡大 / アップセル経験</li><li>顧客本部との折衝経験</li></ul><p><strong>③ 導入支援 / PM / コンサルティング経験</strong></p><ul><li>複数関係者を巻き込むプロジェクト推進経験</li><li>業務整理 / 業務設計経験</li><li>顧客要件を整理し、運用へ落とし込んだ経験</li><li>現場運用定着まで伴走した経験</li></ul><p><span class='tag tag-want'>WANT</span></p><ul><li>エンタープライズSaaSの経験</li><li>ERP / 勤怠 / 人事労務系システムの経験</li><li>医療 / 介護 / ホテル / 小売など多拠点業態への支援経験</li><li>ITコンサル / 業務改善プロジェクト経験</li><li>複数事業所を横断する導入経験</li><li>CS組織立ち上げや業務標準化経験</li><li>アップセル / クロスセル経験</li></ul><p><strong>求める人物像</strong></p><ul><li>本部と現場、両方の視点で物事を考えられる方</li><li>「現場で本当に運用できるか」にこだわれる方</li><li>複雑な状況を整理し、前に進めることが好きな方</li><li>難易度の高い合意形成を楽しめる方</li><li>仕組み化や再現性づくりに興味がある方</li><li>社会性と経済性、両方を大切にしたい方</li></ul>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span><span class="pill">❌ 副業不可</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://www.shiftmation.com/about/" target="_blank">🏢 企業サイト</a><a class="lbtn lbtn-out" href="https://shiftmation.com/series-a/" target="_blank">💰 シリーズA資金調達特設サイト</a><a class="lbtn lbtn-out" href="https://shiftmation.com" target="_blank">🔧 サービスサイト</a><a class="lbtn lbtn-out" href="https://speakerdeck.com/shiftmation/company-deck" target="_blank">📊 会社資料</a></div>
+</div></div>
+
+<div class="card" id="k3"><div class="card-inner">
+  <div class="badges"><span class="badge">カスタマーサクセス責任者（部長候補）</span><span class="badge badge-blue">未上場</span></div>
+  <div class="co-name">イタンジ株式会社</div>
+  <div class="co-url"><a href="https://www.itandi.co.jp/" target="_blank">https://www.itandi.co.jp/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>東京都港区六本木三丁目2番1号 住友不動産六本木グランドタワー42F</td></tr><tr><th>上場区分</th><td>未上場</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>不動産テック企業として高い成長率を達成</li><li>管理会社向けSaaS：導入社数2,840社、仲介会社向けSaaS：導入社数862社</li><li>ARR（年間経常利益）：YoY+72%</li><li>2023年10月期の売上高は32億円と5年間で15倍</li><li>第二創業期の大きな挑戦のさなか</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">「テクノロジーで不動産取引をなめらかにする」をミッションに掲げ、不動産業界における課題を解決する不動産テック企業です。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>「テクノロジーで不動産取引をなめらかにする」をミッションに掲げ、不動産業界における課題を解決する不動産テック企業です。不動産事業者向けのSaaSや消費者向けの不動産賃貸サービスを開発・運営しています。</p><ul><li>不動産賃貸業務の業者間リアルタイムデータベース「ITANDI BB（イタンジ ビービー）」</li><li>不動産賃貸業務のDXサービス群「ITANDI BB ＋（イタンジ ビービー プラス）」</li><li>新サービス セルフ内見型賃貸サイト「OHEYAGO（オヘヤゴー）」</li></ul><p>2012年に創業し、2018年には創業5年でマザーズ上場を果たしたGAテクノロジーズの子会社になった後に成長が加速。2023年10月期の売上高は32億円と5年間で15倍になっています。日本のSaaS企業の中でも高い成長率を達成しています。</p><p>主⼒事業である不動産会社向けSaaSサービスは、グループ全体で導⼊顧客数3,368社、ARR前年⽐＋44％。電⼦⼊居申込数は、年間約97万件、⼊居申込・賃貸借契約関連書類のペーパーレスで年間約824万枚の紙の削減を達成するなど賃貸不動産業界のDXを推進しています。</p><p><strong>代表取締役社長執行役員CEO　永嶋 章弘氏</strong></p><p>2010年に筑波⼤学⼤学院 システム情報⼯学研究科にて情報⼯学修⼠号を取得後、エンジニアとしてニフティ株式会社に⼊社。 2014年、創業期のイタンジに2人目の社員として⼊社し複数の新規事業を⽴ち上げ、2016年、株式会社メルカリにプロダクトマネージャーとして転職。 2018年、イタンジに再⼊社し執⾏役員に就任、デザイン部⾨、マーケティング部⾨などを管掌。2023年11月、代表取締役社長執行役員CEOに就任。</p><p>2012年6月に創業したイタンジは、2度の代表交代を経て、永嶋氏が3人目のCEOとなる。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 カスタマーサクセス責任者（部長候補）</div>
+          <div class="job-preview">事業成長を牽引するCS組織の責任者として、LTVの最大化と解約率の低減に全責任を負う</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>イタンジについて</strong></p><p>私たちは、 「テクノロジーで不動産取引をなめらかにする」 というミッションを掲げるVertical SaaSスタートアップです。</p><p>不動産会社の現場に残る紙・電話・FAX中心の業務をSaaSでなくし、 「人々が大切なことに向き合えるようにする」 社会を目指しています。</p><p>具体的には、不動産賃貸取引を仕組みからアップデートし、DXを推進するtoB向けのソリューション『ITANDI BB+』などを提供しており、日本のSaaS企業の中でも高い成長率を達成し、私たちが取り組む事業はもちろん、PropTechという領域自体も国内外共に盛り上がりを見せています。</p><p><strong>主な実績</strong></p><ul><li>管理会社向けSaaS：導入社数2,840社</li><li>仲介会社向けSaaS：導入社数862社</li><li>ARR（年間経常利益）：YoY+72%</li></ul><p><strong>募集背景</strong></p><p>また現在、更なる事業拡大を目指すフェーズとなっており、 「すべての人の不動産インフラになる」 というビジョンを掲げ、不動産賃貸取引のみにとどまらず、引越しやその先の暮らしを変えるソリューションを提供しています。</p><p>私たちは今、No.1プラットフォームに留まることなく、その先にある業界インフラへと進化を遂げる「第二創業期」の大きな挑戦のさなかにあります。</p><p>従来のSaaSビジネスの常識にとらわれない新しい取り組みや組織の形にもチャレンジしており、共に業界の課題解決に挑戦する仲間を募集しています！</p><p>私たちと共に、レガシーな不動産業界の変革者になりませんか？</p><p><strong>担当いただく業務</strong></p><p>事業成長を牽引するカスタマーサクセス組織の責任者として、SMBからエンタープライズ領域におけるLTVの最大化と解約率（Churn Rate）の低減に全責任を負っていただきます。単なる顧客フォローに留まらず、プロダクト開発へのフィードバックループの構築、営業部門との戦略的連携、そして30〜100名規模への組織拡大を支えるマネジメントおよび仕組み化を主導していただくことを期待しています。</p><p><strong>想定ミッション</strong></p><p><strong>1. 戦略策定およびPL責任</strong></p><ul><li>継続率 / NRRの向上を目的とした中長期的なサクセス戦略の立案</li><li>CS施策予算（ツール投資、ウェビナー、アウトソーシング等）の最適化</li><li>経営層へのKPI報告および次期事業計画への参画</li></ul><p><strong>2. プロダクト・営業との連携</strong></p><ul><li>プロダクト部門と密に連携し、顧客の声を元にした機能改善の優先順位付けとフィードバックループの構築</li><li>営業部門（IS / FS）との連携強化を設計（プリセールス連動等）</li></ul><p><strong>3. スケーラブルな組織構築と人材育成</strong></p><ul><li>スクリプトやプレイブックの整備による「属人化させない」CS体制の構築</li><li>CS組織の再編案の社内合意形成とPJTリード</li></ul><p><strong>4. データドリブンな課題解決</strong></p><ul><li>ヘルススコアを用いた解約リスクの早期検知や対応プランの策定</li><li>定着不全や導入遅延の根本原因を分析し、仕組みによる解決案の設計・実装</li></ul><p><strong>応募資格</strong></p><p><span class='tag tag-must'>MUST</span></p><ul><li>事業責任者としてのご経験</li><li>KGI / KPI設計と組織への現場実装</li><li>オンボーディング設計・チャーン抑止プロセス構築</li><li>CRM（Salesforce等）を活用したオペレーション管理</li><li>NRR / チャーン率の改善施策立案〜実行までの実績</li></ul><p><span class='tag tag-want'>WANT</span></p><ul><li>SaaS / IT / 人材 / BtoB専門サービス業</li><li>ITコンサル・プリセールス経験</li><li>特定領域SaaSのドメイン知識</li><li>マーケティング領域における、LTV最大化 / 顧客インサイト理解</li><li>産業力カウンセラー等のコーチング資格保持</li></ul><p><strong>求める人物像</strong></p><ul><li>「顧客の成功」を事業成長の原動力として捉え、自ら変革を起こせる方</li><li>仕組み化や標準化に強い関心を持ち, 組織の生産性を最大化させることに喜びを感じる方</li><li>複雑なステークホルダー間での合意形成を主導できる高いコミュニケーション能力</li><li>不確実性の高い環境を楽しみ、スピード感を持ってプロジェクトを推進できる方</li></ul>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 基本出社</span><span class="pill">✅ 副業可</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://www.itandi.co.jp/" target="_blank">🏢 企業サイト</a><a class="lbtn lbtn-out" href="https://docs.google.com/presentation/d/e/2PACX-1vTjLGe2cD_W5FH2-dn5GacTPUI9iY7-LjNG1YI2_4iMIrA2Utjz-dDqS2pt9-AVUF-WyRYa-jrzugHm/pub?start=false&" target="_blank">📊 会社紹介資料</a></div>
+</div></div>
+
+<div class="card" id="k4"><div class="card-inner">
+  <div class="badges"><span class="badge">セールス＆カスタマーサクセス（マネージャー候補）</span><span class="badge badge-blue">IPO準備（N-1）</span></div>
+  <div class="co-name">カイテク株式会社</div>
+  <div class="co-url"><a href="https://corp.caitech.co.jp/" target="_blank">https://corp.caitech.co.jp/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>東京都新宿区新宿1丁目23番1号 THE PORTAL 新宿御苑 2F</td></tr><tr><th>上場区分</th><td>未上場（IPO準備 N-1期）</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>★IPO準備フェーズ：N-1期</li><li>★社長リレーション</li><li>デロイトトーマツグループ「Technology Fast 50 2025 Japan」で成長率1,616％で1位受賞</li><li>直近3期連続黒字、営業利益率10％超と成長性と収益性を両立</li><li>介護・医療領域で圧倒的シェアNo.1（タイミー社の約4倍）</li><li>少数精鋭52名で高い生産性を実現</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">「2050年に世界一幸せな超高齢社会をつくる」というビジョンのもと、介護・医療領域の人材不足解消に挑む2018年設立のHRテック企業です。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>「2050年に世界一幸せな超高齢社会をつくる」というビジョンのもと、介護・医療領域の人材不足解消に挑む2018年設立のHRテック企業で、介護・医療・看護領域に特化した単発・スポットワークマッチングサービス「カイテク」を展開しています。</p><p>慢性的な人材不足という社会構造課題に対し、有資格者限定という独自モデルでアプローチしている点や勤務後5分以内の即時ペイメントや、足りないシフト枠をスポットワークと連携する仕組みなど、現場起点のプロダクト開発を進め、導入事業所は約2.1万、アプリDLは約118万人まで拡大。</p><p>業界内では圧倒的なシェアNo.1（タイミー社の約4倍）のインフラとして独走状態をキープ、そして直近3期連続黒字、営業利益率10％超と、成長性と収益性を両立している点も特徴でIPOを目指しています。</p><p>今後は介護・医療周辺領域への展開や新規事業、M&Aも視野に入れ、日本で成功モデルを築いた先の海外展開も見据えています。エリア展開も進行中で、介護人材市場の流動化を促進するインフラとしてのポジションを築きつつあります。</p><p>デロイトトーマツグループが2026年1月に発表したテクノロジー・メディア・通信業界における成長率のランキング「Technology Fast 50 2025 Japan」において、過去3決算期の収益（売上高）に基づく成長率1,616％を記録し、見事１位を受賞！</p><p><strong>代表取締役社長　武藤 高史氏</strong></p><p>1988年生まれ。立命館大学大学院情報理工学研究科を修了後、新卒で富士ゼロックス株式会社に入社後、エムスリー株式会社に参画。</p><p>祖父母の介護をきっかけに、日本が直面する介護・医療人材不足という社会課題の解決を志し、2018年に同社を創業。</p><p>外部では講演や書籍寄稿なども行い、介護・医療分野の新しい働き方を提案する起業家としても注目されています。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 セールス＆カスタマーサクセス（マネージャー候補）</div>
+          <div class="job-preview">介護・看護施設への導入提案から活用定着、全社展開まで一貫して担当</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>募集背景</strong></p><p>介護人材が57万人不足するとされる「2040年問題」。日本の介護現場は、深刻な人手不足と採用難に直面しています。</p><p>私たちは、介護・看護のスポットワークSaaS「カイテク」を通じてこの課題の根本解決に挑戦中です。</p><p>サービス開始から7年で16,000以上の施設に導入され、市場No.1の実績（GMO・TPC調査）を築いてきました。</p><p>現在は医療・保育・障がい福祉分野への展開や、新規サービス「カイテクシフト」も始動。</p><p>さらなる事業成長を見据え、導入から定着・拡大までをリードするセールス＆CSメンバーを募集します。</p><p><strong>ポジションの魅力</strong></p><ul><li>社会課題の解決とSaaS成長の最前線を両立</li><li>顧客の声を直接プロダクト改善に反映</li><li>導入から活用・展開まで一貫して担当</li><li>顧客折衝・課題解決スキルが大きく伸びる</li><li>成果と志向次第で早期に事業中核へ</li></ul><p><strong>課題と期待している事</strong></p><p>現状、全国30万以上の介護事業者のわずか5%程度にしかリーチできていません。</p><p>私たちは「超高齢社会を成功に導く」という前人未到のミッションを掲げており、介護領域で培ったノウハウを活かし、医療・保育・障がい福祉領域へも事業を展開しています。</p><p>また、2025年1月には、新規プロダクトとして、介護施設・医療機関のシフト作成を効率化する「カイテクシフト」をリリース。</p><p>新規の市場開発・事業開発にも積極的に取り組む、急成長フェーズにあります。</p><p>広大な社会課題を解決するためには、私たちの事業と組織をさらに拡大し、再現性ある成長モデルを確立することが不可欠です。</p><p>介護・医療事業者の喫緊のニーズを深く拾い上げ、「カイテク」の利用促進を加速させるため、この度事業成長の最前線を担うセールス＆カスタマーサクセスメンバーを募集します。</p><p>社会貢献性と事業成長を両立させる、世の中にない急成長サービスを私たちと一緒に創り上げていきませんか？</p><p><strong>業務内容</strong></p><p>介護・看護施設に向け、スポットワークの導入提案から活用定着、全社展開までを一貫して担当いただきます。</p><ul><li>顧客課題のヒアリングと導入提案（経営層との商談あり）</li><li>稟議、契約手続き支援、初期オンボーディング支援</li><li>利用データをもとにした改善提案（定量＋定性）</li><li>他拠点への横展開・プロジェクト提案</li><li>顧客の声をもとにしたプロダクト改善（PdM/開発と連携）</li></ul><p><strong>なぜ一気通貫型なのか</strong></p><p>従来の「営業→CS」という分業制ではなく、1人の担当が一貫して支援する体制を採用しています。</p><ul><li>契約ではなく「現場での活用」がゴール</li><li>顧客の温度感を持った提案ができる</li><li>決裁者〜現場責任者までの調整がしやすい</li><li>提案・改善を通じて個人のスキルが総合的に伸びる</li></ul><p><strong>チーム・カルチャー</strong></p><ul><li>①Customer Centric：顧客起点で価値提供を追求</li><li>②All Leader：全員が当事者意識を持って行動</li><li>③IMPACT：限られたリソースで最大の価値を生み出す</li></ul><p><strong>所属チームについて</strong></p><ul><li>配属：Business Development Group - Sales&Customer Success Team</li><li>人数：25名（20代〜30代がバランスよく在籍）</li><li>出身：SaaS営業、医療・介護業界、コンサル、人材、理学療法士など多様なバックグラウンド</li></ul><p><strong>業務ツール</strong></p><p>Google Workspace／Slack／Hubspot／Zoom Phone／Amptalk など</p><p><strong>メンバーの前職紹介(一例)</strong></p><ul><li>介護医療業界向け人材紹介の両面型営業(男性/30台前半)</li><li>SaaS系メガベンチャーのカスタマーサクセス(男性/30台前半)</li><li>中小ベンチャー向けコンサル会社のコンサルタント(男性/30台中盤)</li><li>建設業向けSaaS系のカスタマーサクセス(女性/20台中盤)</li><li>生命保険の新規開拓営業(女性/20台中盤)</li><li>回復期リハビリテーション病棟の理学療法士(女性/20台後半)</li></ul><p>※多様なキャリアのバックグラウンドのメンバーが活躍中</p><p><strong>応募資格</strong></p><p><span class='tag tag-must'>MUST</span></p><p>以下のすべてに該当する方</p><ul><li>法人営業、カスタマーサクセス、カウンターセールスなどの顧客折衝経験が5年以上ある方</li><li>再現性のある形で継続的に目標達成を成し遂げてきた経験</li><li>医療・介護・高齢者福祉領域に強い関心がある方　（業界経験は問いません）</li></ul><p><span class='tag tag-want'>WANT</span></p><p>以下いずれかに該当する方は歓迎します</p><ul><li>チームの立ち上げ・マネジメントのご経験</li><li>人材業界（求人媒体・人材紹介・派遣等）のご経験</li><li>BtoB領域のサービスをグロースさせた経験</li></ul>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span><span class="pill">✅ 副業可（条件あり）</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://corp.caitech.co.jp/" target="_blank">🏢 企業サイト</a><a class="lbtn lbtn-out" href="https://docs.google.com/presentation/d/e/2PACX-1vSQUpcwF2n-OuSsajkugW0ixfr_QI5FPRfTt70YPQU7u5XTiwUZitHswzrjc6GnOJvzJ58HcQhQI27_/pub?start=false&loop=false&delayms=3000&slide=id.g3884d2b72ef_0_701" target="_blank">📊 会社資料</a><a class="lbtn lbtn-out" href="https://corp.caitech.co.jp/recruit/#anchor-section-issue" target="_blank">📝 採用サイト</a></div>
+</div></div>
+
+<div class="card" id="k5"><div class="card-inner">
+  <div class="badges"><span class="badge">オープンポジション</span><span class="badge badge-blue">IPO準備中</span></div>
+  <div class="co-name">株式会社できるくん（旧：株式会社ユーティル）</div>
+  <div class="co-url"><a href="https://utill.co.jp/" target="_blank">https://utill.co.jp/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>〒141-0031東京都品川区西五反田7-22-17 TOCビル 8F</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>IPO準備中</li><li>社長リレーション</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">「テクノロジーで産業の在り方を変える」をビジョンに、AIを活用してIT受託・Web制作業界の構造的課題に挑むテックカンパニーです。AI駆動のBPOサービスやAIエージェントの開発・提供を主軸に、業務効率と品質を両立するサービスを展開しています。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>「テクノロジーで産業の在り方を変える」をビジョンに、AIを活用してIT受託・Web制作業界の構造的課題に挑むテックカンパニーです。AI駆動のBPOサービスやAIエージェントの開発・提供を主軸に、業務効率と品質を両立するサービスを展開しています。</p><p>主力サービスである「ホームページできるくん」は、月額数千円から高品質なWebサイト制作が可能なサービスとして急成長。毎月100件超の受注を獲得し、Wixを活用したWeb制作分野では2025年6月以降、国内最大級の制作実績数を誇ります。さらに、SEO記事制作や保守・運用、取材・撮影・記事制作までワンストップで提供し、サービス領域を拡大しています。</p><p><strong>事業転換の背景</strong><br>同社は2025年に大きな転換点を迎えました。M&A・事業譲渡を通じて「マッチング事業中心」から、AIを中核としたテックカンパニーへと大きく舵を切りました。Web幹事事業の譲渡と制作・運用領域の強化により、AIを軸とした成長戦略を明確化しています。</p><p>現在取り組んでいるのは、長年変化のなかったWeb制作業界そのものの再構築。労働集約・属人化が前提だった業界構造を、AIの力で根本から変えていくフェーズに入っています。</p><p><strong>代表取締役 岩田真氏</strong><br>京都大学経済学部卒業。2012年に新卒で株式会社ジャフコに入社。入社から3年間投資部に配属され、数億円単位のベンチャー投資事業に従事。株式会社ホワイトプラス（リネット：ネット宅配クリーニング）、株式会社リサーチ・アンド・イノベーション（調査サービス）の投資、株式会社メディ・ウェブ（医療系SaaS）の事業支援などに従事。<br>岩田社長は京都大学卒業後、VCである株式会社ジャフコの投資部にて3年間ベンチャー投資を経験後に起業。人当たり柔らかで非常にお話ししやすい方です。「日本中の中小企業をデジタル化する」をビジョンに掲げ、SMB向けDX支援のためのプラットフォームを運営しています。マネタイズは約300社のベンダーから、中小企業は無料でサービスを利用できます。2030年までに年商100億円を目指し、既存事業のグロースおよび新規サービス立ち上げに向けて尽力されています。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 オープンポジション</div>
+          <div class="job-preview">IT受託・制作産業の構造そのものをAIで作り直すテックカンパニーでの幅広いポジション</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>私たちについて</strong><br>ミッション：働く体験に、まだ見ぬ価値を<br>ビジョン：テクノロジーで産業の在り方を変える</p><p>弊社はIT受託・制作産業の構造そのものをAIで作り直すテックカンパニーです。『働く体験に、まだ見ぬ価値を』 というミッションを新たなに掲げており、自社AIエージェントを軸に</p><ul><li>AI Workforce</li><li>AI BPO</li></ul><p>の2事業を推進し業界構造そのものの変革にチャレンジしています！</p><p><strong>参考資料</strong></p><ul><li>会社説明資料：https://speakerdeck.com/utill/zhu-shi-hui-she-yuteiru-hui-she-shao-jie-zi-liao</li><li>採用ページ：https://utill-recruit.notion.site/2540a826ba468130a20acee7b6ab428b</li><li>代表岩田のnote：https://note.com/shin_iwata</li><li>資本業務提携について：https://www.nikkei.com/article/DGXZQOUC076EU0X00C26A1000000/</li></ul><p><strong>当求人について</strong><br>できるくんの事業/組織に興味を持っていただき、どのポジションがフィットするのかも含め幅広く一度面談を希望される方は、こちらのオープンポジションより履歴書と職務履歴書を添付の上ご応募ください。弊社側で幅広く適性のあるポジション/役割を検討させていただきます。<br>(※ご提示可能なポジションがない場合もありますので、その点は予めご了承ください)</p><p><strong>求める人物像：</strong></p><ul><li>当社のミッションにご共感いただける方</li><li>プロフェッショナリズムの強い方</li></ul><p>業務内容：変更の範囲：会社の定める業務 (※ただし、業務の都合により変更する場合がある)</p>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span><span class="pill">✅ 副業可</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://utill.co.jp/" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+</main>
+<footer>
+  <p>本資料はmorichが矢野友浩 様のためにご用意した個人情報を含む機密資料です。無断転用・転載はご遠慮ください。</p>
+  <p style="margin-top:6px;">© 株式会社morich</p>
+</footer>
+<script>
+  function toggleAcc(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+  function toggleJob(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
